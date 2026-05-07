@@ -1,1 +1,72 @@
-<p>add works!</p>
+<div class="contenedor-form">
+    <h2 class="titulo-form">Añadir Nuevo Coche</h2>
+
+    <form class="form-coche">
+
+        <div class="grupo-input">
+            <label for="marca">Marca:</label>
+            <input type="text" id="marca" class="control-input">
+        </div>
+
+        <div class="grupo-input">
+            <label for="modelo">Modelo:</label>
+            <input type="text" id="modelo" class="control-input">
+        </div>
+
+        <div class="grupo-input">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" class="control-input">
+        </div>
+
+        <div class="fila-detalles">
+            <div class="grupo-input">
+                <label for="anio">Año:</label>
+                <input type="number" id="anio" class="control-input">
+            </div>
+
+            <div class="grupo-input">
+                <label for="precio">Precio (€):</label>
+                <input type="number" id="precio" class="control-input">
+            </div>
+        </div>
+
+        <div class="grupo-input">
+            <label for="kms">Kilómetros:</label>
+            <input type="number" id="kms" class="control-input">
+        </div>
+
+        <div class="grupo-input">
+            <label for="combustible">Combustible:</label>
+            <select id="combustible" class="control-select">
+                <option value="gasolina">Gasolina</option>
+                <option value="diesel">Diésel</option>
+                <option value="electrico">Eléctrico</option>
+                <option value="hibrido">Híbrido</option>
+            </select>
+        </div>
+
+        <div class="grupo-input">
+            <label for="transmision">Cambio:</label>
+            <select id="transmision" class="control-select">
+                <option value="manual">Manual</option>
+                <option value="automatico">Automático</option>
+            </select>
+        </div>
+
+        <div class="grupo-input">
+            <label for="imagen">URL de la Imagen:</label>
+            <input type="text" id="imagen" class="control-input">
+        </div>
+
+        <div class="grupo-input">
+            <label for="descripcion">Descripción:</label>
+            <textarea id="descripcion" class="control-area" rows="4"></textarea>
+        </div>
+
+        <div class="acciones">
+            <button type="button" class="btn-limpiar">Limpiar</button>
+            <button type="button" class="btn-guardar">Añadir Coche</button>
+        </div>
+
+    </form>
+</div>
