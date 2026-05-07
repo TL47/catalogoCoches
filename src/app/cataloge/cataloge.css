@@ -1,42 +1,104 @@
+/* Estilos generales */
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Añadido para que el padding y bordes no rompan los anchos */
 }
 
-:root {
-  --color-primario: #0052FF; /* azul eléctrico */
-  --tipografia: #0A192F;
-  --background-section: #F4F7F6;
-  --minor-change:#00F2FF;
+/* Letras */
+h1 {
+    font-size: 70px;
+    color: #0A192F;
 }
 
-header {
-    border: 2px solid ;
+h2 {
+    font-size: 20px;
+    color: #0A192F;
+}
+
+/* Contenedores principales */
+.titulo {
+    border-bottom: 2px solid #0A192F;
     height: 20vh;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    background-color: #F4F7F6;
 }
 
 main {
     display: flex;
-    height: 80vh;
+    height: 70vh;
     width: 100%;
+    background-color: #F4F7F6;
+    margin-bottom: 40px;
 }
 
 .contenido {
-    border: 2px solid black;
     width: 80%;
     height: 100%;
+    padding: 20px;
+    overflow-y: auto; /* Añadido para poder hacer scroll si hay muchos coches */
 }
 
 .filtros {
-    border: 2px solid black;
+    border-left: 2px solid #0A192F;
     width: 20%;
     height: 100%;
+    background-color: white;
 }
 
 .busqueda {
     padding: 10px;
+}
+
+.busqueda input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 20px;
+}
+
+/* Imágenes por defecto */
+img {
+    width: 600px;
+    height: 300px;
+}
+
+/* Estilos de las tarjetas (Coches) */
+.contenedor-tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.tarjeta {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.tarjeta-img {
+    width: 100%; /* Pisa el 600px del img general para que encaje en la tarjeta */
+    height: 200px; 
+    object-fit: cover;
+    display: block;
+}
+
+.tarjeta-cuerpo {
+    padding: 15px;
+}
+
+.tarjeta-titulo {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.tarjeta-texto {
+    font-size: 14px;
+    color: #666;
 }
