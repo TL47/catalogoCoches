@@ -1,0 +1,42 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+  --color-primario: #0052FF; /* azul eléctrico */
+  --tipografia: #0A192F;
+  --background-section: #F4F7F6;
+  --minor-change:#00F2FF;
+}
+
+header {
+    border: 2px solid ;
+    height: 20vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    height: 80vh;
+    width: 100%;
+}
+
+.contenido {
+    border: 2px solid black;
+    width: 80%;
+    height: 100%;
+}
+
+.filtros {
+    border: 2px solid black;
+    width: 20%;
+    height: 100%;
+}
+
+.busqueda {
+    padding: 10px;
+}
