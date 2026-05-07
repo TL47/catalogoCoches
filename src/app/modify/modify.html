@@ -1,1 +1,54 @@
-<p>modify works!</p>
+
+
+<p>Los campos que dejes en blanco no seran reemplazados.</p>
+
+<div>
+    <label for="Marca">Marca: </label>
+    <input type="text" id="Marca" name="Marca" placeholder="Introduce la Marca" required>
+</div>
+<div>
+    <label for="Modelo">Modelo: </label>
+    <input type="text" id="Modelo" name="Modelo" placeholder="Introduce el Modelo" required>
+</div>
+<div>
+    <label for="Matrícula">Matrícula: </label>
+    <input type="text" id="Matrícula" name="Matrícula" placeholder="Introduce la Matrícula" required>
+</div>
+<div>
+    <label for="Año">Año: </label>
+    <input type="number" id="Año" min="1886" max="2026" name="Año" placeholder="Introduce el Año" required>
+</div>
+<div>
+    <label for="Precio">Precio: </label>
+    <input type="number" id="Precio" step="0.01" min="0" name="Precio" placeholder="Introduce el Precio" required>
+</div>
+<div>
+    <label for="">Kilometraje: </label>
+    <input type="number" id="marca" min="0.0" step="0.01" name="marca" placeholder="Introduce el Kilometraje" required>
+</div>
+<div class="grupo-input">
+    <label for="combustible">Combustible:</label>
+    <select id="combustible" class="control-select">
+        <option value="gasolina">Gasolina</option>
+        <option value="diesel">Diésel</option>
+        <option value="electrico">Eléctrico</option>
+        <option value="hibrido">Híbrido</option>
+    </select>
+<div class="grupo-input">
+    <label for="transmision">Cambio:</label>
+    <select id="transmision" class="control-select">
+        <option value="manual">Manual</option>
+        <option value="automatico">Automático</option>
+    </select>
+</div>
+<div>
+    <label for="descripcion">Descripcion: </label>
+    <input type="text" id="Descripcion" name="Descripcion" placeholder="Introduce una Descripción" required>
+</div>
+<div>
+    <label for="image">Imagen: </label>
+    <input type="url" id="Imagen" name="Imagen" placeholder="Introduce la URL de la imagen" required>
+</div>
+<div>
+    <button type="submmit">Subir</button>
+</div>
