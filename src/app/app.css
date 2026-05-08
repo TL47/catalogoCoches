@@ -112,8 +112,7 @@
 	color: var(--smoke-gray);
 }
 
-.footer-copy,
-.footer-note {
+.footer-copy {
 	margin: 0;
 	font-size: 0.9rem;
 	line-height: 1.35;
@@ -147,8 +146,7 @@
 		padding: 0.95rem 1rem;
 	}
 
-	.footer-copy,
-	.footer-note {
+	.footer-copy {
 		width: 100%;
 	}
 }
