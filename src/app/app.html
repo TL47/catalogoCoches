@@ -1,16 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Principal</title>
-</head>
-<body>
-  <nav>
-    <button routerLink="/catalogo">Ver Catálogo</button>
-    <button routerLink="/add">Añadir Coche</button>
-  </nav>
+<header class="topbar">
+  <div class="brand-block">
+    <p class="brand-kicker">Concesionario</p>
+    <h1 class="brand-title">Catálogo de Coches</h1>
+  </div>
 
+  <nav class="nav-links" aria-label="Navegación principal">
+    <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</a>
+    <a routerLink="/cataloge" routerLinkActive="active">Catálogo</a>
+    <a routerLink="/add" routerLinkActive="active">Añadir</a>
+    <a routerLink="/modify" routerLinkActive="active">Modificar</a>
+    <a routerLink="/delete" routerLinkActive="active">Eliminar</a>
+  </nav>
+</header>
+
+<main class="content-shell">
   <router-outlet></router-outlet>
-</body>
-</html>
+</main>
