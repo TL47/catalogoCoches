@@ -1,1 +1,83 @@
-<p>add works!</p>
+<main>
+    <div class="contenedor-form">
+        <h2 class="titulo-form">Añadir Nuevo Coche</h2>
+
+        <!-- Formulario de Angular template-driven -->
+        <!-- Cuando el usuario pulse el botón de enviar (o de al Enter), ejecuta la función submitForm() del TS -->
+        <form class="form-coche" (ngSubmit)="submitForm()" #carForm="ngForm">
+
+            <div class="grupo-input">
+                <label for="marca">Marca:</label>
+                <input name="marca" [(ngModel)]="coche.marca" type="text" id="marca" class="control-input" required>
+            </div>
+
+            <!-- ngModel: Si el usuario escribe en el input, la variable this.coche.marca en el TS se actualiza automáticamente.
+             Si el código TS cambia el valor de this.coche.marca, el texto dentro del input del HTML cambia solo. -->
+            <div class="grupo-input">
+                <label for="modelo">Modelo:</label>
+                <input name="modelo" [(ngModel)]="coche.modelo" type="text" id="modelo" class="control-input" required>
+            </div>
+
+            <div class="grupo-input">
+                <label for="matricula">Matrícula:</label>
+                <input name="matricula" [(ngModel)]="coche.matricula" type="text" id="matricula" class="control-input"
+                    required>
+            </div>
+
+            <div class="fila-detalles">
+                <div class="grupo-input">
+                    <label for="anio">Año:</label>
+                    <input name="anio" [(ngModel)]="coche.anio" min="1886" max="2026" type="number" id="anio"
+                        class="control-input">
+                </div>
+
+                <div class="grupo-input">
+                    <label for="precio">Precio (€):</label>
+                    <input name="precio" [(ngModel)]="coche.precio" step="0.01" min="0" type="number" id="precio"
+                        class="control-input">
+                </div>
+            </div>
+
+            <div class="grupo-input">
+                <label for="kms">Kilómetros:</label>
+                <input name="kms" [(ngModel)]="coche.kms" step="0.01" min="0" type="number" id="kms"
+                    class="control-input">
+            </div>
+
+            <div class="grupo-input">
+                <label for="combustible">Combustible:</label>
+                <select name="combustible" [(ngModel)]="coche.combustible" id="combustible" class="control-select">
+                    <option value="gasolina">Gasolina</option>
+                    <option value="diesel">Diésel</option>
+                    <option value="electrico">Eléctrico</option>
+                    <option value="hibrido">Híbrido</option>
+                </select>
+            </div>
+
+            <div class="grupo-input">
+                <label for="transmision">Cambio:</label>
+                <select name="transmision" [(ngModel)]="coche.transmision" id="transmision" class="control-select">
+                    <option value="manual">Manual</option>
+                    <option value="automatico">Automático</option>
+                </select>
+            </div>
+
+            <div class="grupo-input">
+                <label for="imagen">URL de la Imagen:</label>
+                <input name="imagen" [(ngModel)]="coche.imagen" type="text" id="imagen" class="control-input">
+            </div>
+
+            <div class="grupo-input">
+                <label for="descripcion">Descripción:</label>
+                <textarea name="descripcion" [(ngModel)]="coche.descripcion" id="descripcion" class="control-area"
+                    rows="4"></textarea>
+            </div>
+
+            <div class="acciones">
+                <button type="button" class="btn-limpiar" (click)="clearForm()">Limpiar</button>
+                <button type="submit" class="btn-guardar">Añadir Coche</button>
+            </div>
+
+        </form>
+    </div>
+</main>
