@@ -1,5 +1,6 @@
 import { CurrencyPipe } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface Coche {
   marca: string;
@@ -16,13 +17,23 @@ interface Coche {
 
 @Component({
   selector: 'app-cataloge',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, FormsModule],
   templateUrl: './cataloge.html',
   styleUrl: './cataloge.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Cataloge {
   selectedCoche: Coche | null = null;
+  
+  // Filtros
+  searchText = signal('');
+  selectedMarca = signal('');
+  selectedCombustible = signal('');
+  selectedTransmision = signal('');
+  minPrecio = signal(0);
+  maxPrecio = signal(1500000);
+  minAnio = signal(2010);
+  maxAnio = signal(new Date().getFullYear());
 
   // Array de coches temporal mientras no hay persistencia
   readonly coches: Coche[] = [
@@ -236,6 +247,92 @@ export class Cataloge {
     },
   ];
 
+  // Computed property para coches filtrados
+  cochesFilterados = computed(() => {
+    const search = this.searchText().toLowerCase();
+    const marca = this.selectedMarca();
+    const combustible = this.selectedCombustible();
+    const transmision = this.selectedTransmision();
+    const minP = this.minPrecio();
+    const maxP = this.maxPrecio();
+    const minA = this.minAnio();
+    const maxA = this.maxAnio();
+
+    return this.coches.filter(coche => {
+      // Filtro de búsqueda (marca o modelo)
+      if (search && !coche.marca.toLowerCase().includes(search) && !coche.modelo.toLowerCase().includes(search)) {
+        return false;
+      }
+
+      // Filtro de marca
+      if (marca && coche.marca !== marca) {
+        return false;
+      }
+
+      // Filtro de combustible
+      if (combustible && coche.combustible !== combustible) {
+        return false;
+      }
+
+      // Filtro de transmisión
+      if (transmision && coche.transmision !== transmision) {
+        return false;
+      }
+
+      // Filtro de precio
+      if (coche.precio < minP || coche.precio > maxP) {
+        return false;
+      }
+
+      // Filtro de año
+      if (coche.anio < minA || coche.anio > maxA) {
+        return false;
+      }
+
+      return true;
+    });
+  });
+
+  // Métodos para obtener valores únicos para los filtros
+  getMarcas(): string[] {
+    const marcas = new Set(this.coches.map(c => c.marca));
+    return Array.from(marcas).sort();
+  }
+
+  getCombustibles(): string[] {
+    const combustibles = new Set(this.coches.map(c => c.combustible));
+    return Array.from(combustibles).sort();
+  }
+
+  getTransmisiones(): string[] {
+    const transmisiones = new Set(this.coches.map(c => c.transmision));
+    return Array.from(transmisiones).sort();
+  }
+
+  getPrecioMinimo(): number {
+    return Math.min(...this.coches.map(c => c.precio));
+  }
+
+  getPrecioMaximo(): number {
+    return Math.max(...this.coches.map(c => c.precio));
+  }
+
+  getAnioMinimo(): number {
+    return Math.min(...this.coches.map(c => c.anio));
+  }
+
+  getAnioMaximo(): number {
+    return Math.max(...this.coches.map(c => c.anio));
+  }
+
+  // Inicializar rangos
+  constructor() {
+    this.minPrecio.set(this.getPrecioMinimo());
+    this.maxPrecio.set(this.getPrecioMaximo());
+    this.minAnio.set(this.getAnioMinimo());
+    this.maxAnio.set(this.getAnioMaximo());
+  }
+
   mostrarPopup(coche: Coche) {
     this.selectedCoche = coche;
     const popup = document.getElementById('popup');
@@ -245,5 +342,16 @@ export class Cataloge {
   cerrarPopup() {
     const popup = document.getElementById('popup');
     popup?.classList.remove('visible');
+  }
+
+  resetFiltros() {
+    this.searchText.set('');
+    this.selectedMarca.set('');
+    this.selectedCombustible.set('');
+    this.selectedTransmision.set('');
+    this.minPrecio.set(this.getPrecioMinimo());
+    this.maxPrecio.set(this.getPrecioMaximo());
+    this.minAnio.set(this.getAnioMinimo());
+    this.maxAnio.set(this.getAnioMaximo());
   }
 }

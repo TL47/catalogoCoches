@@ -47,13 +47,12 @@
 
 <div class="titulo">
     <h1>Catálogo</h1>
-    <h2>Esto es el catálogo donde puede consultar los coches de la colección</h2>
 </div>
 <main>
     <!-- Aquí aparecen los coches -->
     <div class="contenido">
         <div class="contenedor-tarjetas">
-            @for (coche of coches; track coche.matricula) {
+            @for (coche of cochesFilterados(); track coche.matricula) {
                 <button type="button" class="tarjeta-boton" (click)="mostrarPopup(coche)">
                     <div class="tarjeta">
                         <img [src]="coche.imagen" [alt]="coche.marca + ' ' + coche.modelo" class="tarjeta-img">
@@ -63,17 +62,76 @@
                         </div>
                     </div>
                 </button>
+            } @empty {
+                <p class="sin-resultados">No hay coches que coincidan con los filtros seleccionados.</p>
             }
         </div>
     </div>
 
     <!-- Filtros para aplicar a la busqueda de coches -->
     <div class="filtros">
-        <div class="busqueda">
-            <form>
-                <label for="search">Buscar:</label>
-                <input type="text" name="search" id="search" placeholder="Escribe aquí...">
-            </form>
+        <div class="filtros-header">
+            <h3>Filtros</h3>
+            <button type="button" class="btn-reset" (click)="resetFiltros()">Limpiar Filtros</button>
         </div>
+
+        <form class="formulario-filtros">
+            <!-- Búsqueda de texto -->
+            <div class="grupo-filtro">
+                <label for="search">Buscar (Marca/Modelo):</label>
+                <input 
+                    type="text" 
+                    name="search" 
+                    id="search" 
+                    placeholder="Escribe aquí..." 
+                    [(ngModel)]="searchText"
+                    class="input-filtro">
+            </div>
+
+            <!-- Marca -->
+            <div class="grupo-filtro">
+                <label for="marca">Marca:</label>
+                <select 
+                    name="marca" 
+                    id="marca" 
+                    [(ngModel)]="selectedMarca"
+                    class="select-filtro">
+                    <option value="">Todas las marcas</option>
+                    @for (marca of getMarcas(); track marca) {
+                        <option [value]="marca">{{ marca }}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Combustible -->
+            <div class="grupo-filtro">
+                <label for="combustible">Combustible:</label>
+                <select 
+                    name="combustible" 
+                    id="combustible" 
+                    [(ngModel)]="selectedCombustible"
+                    class="select-filtro">
+                    <option value="">Todos los combustibles</option>
+                    @for (combustible of getCombustibles(); track combustible) {
+                        <option [value]="combustible">{{ combustible }}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Transmisión -->
+            <div class="grupo-filtro">
+                <label for="transmision">Transmisión:</label>
+                <select 
+                    name="transmision" 
+                    id="transmision" 
+                    [(ngModel)]="selectedTransmision"
+                    class="select-filtro">
+                    <option value="">Todas las transmisiones</option>
+                    @for (transmision of getTransmisiones(); track transmision) {
+                        <option [value]="transmision">{{ transmision }}</option>
+                    }
+                </select>
+            </div>
+        </form>
     </div>
 </main>
