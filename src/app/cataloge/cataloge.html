@@ -1,3 +1,50 @@
+<!-- PopUp de cada coche -->
+<div class="popup" id="popup">
+    <div class="container-popup">
+        <div class="header-popup">
+            <button type="button" id="cerrar" class="cerrar-popup" (click)="cerrarPopup()" aria-label="Cerrar popup">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @if (selectedCoche) {
+            <div class="popup-content">
+                <img [src]="selectedCoche.imagen" [alt]="selectedCoche.marca + ' ' + selectedCoche.modelo" class="popup-img">
+                <div class="popup-info">
+                    <p class="popup-kicker">Ficha del vehículo</p>
+                    <h3>{{ selectedCoche.marca }} {{ selectedCoche.modelo }}</h3>
+                    <p class="popup-description">{{ selectedCoche.descripcion }}</p>
+                    <div class="popup-stats">
+                        <div class="popup-stat">
+                            <span>Matrícula</span>
+                            <strong>{{ selectedCoche.matricula }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Año</span>
+                            <strong>{{ selectedCoche.anio }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Precio</span>
+                            <strong>{{ selectedCoche.precio | currency:'EUR':'symbol':'1.0-0' }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Kms</span>
+                            <strong>{{ selectedCoche.kms }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Combustible</span>
+                            <strong>{{ selectedCoche.combustible }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Transmisión</span>
+                            <strong>{{ selectedCoche.transmision }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
 <div class="titulo">
     <h1>Catálogo</h1>
     <h2>Esto es el catálogo donde puede consultar los coches de la colección</h2>
@@ -6,141 +53,17 @@
     <!-- Aquí aparecen los coches -->
     <div class="contenido">
         <div class="contenedor-tarjetas">
-            <div class="tarjeta">
-                <img src="https://media.revistagq.com/photos/5d89c9335d07090008d92dd6/16:9/w_2560%2Cc_limit/2020-mclaren-senna-mmp-1545234547.jpg" class="tarjeta-img" alt="Coche 1">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 1</h5>
-                    <p class="tarjeta-texto">Descripción del coche 1, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://d1gl66oyi6i593.cloudfront.net/wp-content/uploads/2022/07/coches-mas-rapidos-del-mundo-2.jpg" class="tarjeta-img" alt="Coche 2">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 2</h5>
-                    <p class="tarjeta-texto">Descripción del coche 2, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://fotos.quecochemecompro.com/opel-corsa/opel-corsa-dinamismo-carretera.jpg?size=750x400" class="tarjeta-img" alt="Coche 3">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 3</h5>
-                    <p class="tarjeta-texto">Descripción del coche 3, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-            
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-            
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-            
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
-
-            <div class="tarjeta">
-                <img src="https://carnovo.com/wp-content/uploads/2018/08/cupra-leon-sportstourer.jpg" class="tarjeta-img" alt="Coche 4">
-                <div class="tarjeta-cuerpo">
-                    <h5 class="tarjeta-titulo">Coche 4</h5>
-                    <p class="tarjeta-texto">Descripción del coche 4, clicar para más detalles.</p>
-                </div>
-            </div>
+            @for (coche of coches; track coche.matricula) {
+                <button type="button" class="tarjeta-boton" (click)="mostrarPopup(coche)">
+                    <div class="tarjeta">
+                        <img [src]="coche.imagen" [alt]="coche.marca + ' ' + coche.modelo" class="tarjeta-img">
+                        <div class="tarjeta-cuerpo">
+                            <h5 class="tarjeta-titulo">{{ coche.marca }} {{ coche.modelo }}</h5>
+                            <p class="tarjeta-texto">{{ coche.descripcion }}</p>
+                        </div>
+                    </div>
+                </button>
+            }
         </div>
     </div>
 

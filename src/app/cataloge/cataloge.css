@@ -73,6 +73,24 @@ img {
     gap: 20px;
 }
 
+.tarjeta-boton {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    text-align: inherit;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.tarjeta-boton:focus-visible {
+    outline: 3px solid #0A192F;
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
 .tarjeta {
     background-color: white;
     border: 1px solid #ddd;
@@ -101,4 +119,174 @@ img {
 .tarjeta-texto {
     font-size: 14px;
     color: #666;
+}
+
+/* Estas clases solo aparecen cuando clican al coche */
+.popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    inset: 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.699);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(8px) scale(0.98);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1000;
+}
+
+.visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.container-popup {
+    width: min(980px, 100%);
+    max-height: 90vh;
+    position: relative;
+    overflow: auto;
+    background: linear-gradient(180deg, #F4F7F6 0%, #FFFFFF 100%);
+    border: 1px solid rgba(10, 25, 47, 0.08);
+    border-radius: 32px;
+    box-shadow: 0px 24px 80px rgba(0, 0, 0, 0.35);
+    transform: translateY(16px) scale(0.98);
+    transition: transform 0.3s ease;
+}
+
+.popup.visible .container-popup {
+    transform: translateY(0) scale(1);
+}
+
+.header-popup {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px;
+    z-index: 1;
+}
+
+.cerrar-popup {
+    width: 44px;
+    height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 0;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #0A192F, #1E3A5F);
+    color: #F4F7F6;
+    font-size: 28px;
+    line-height: 1;
+    box-shadow: 0 10px 24px rgba(10, 25, 47, 0.28);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.cerrar-popup:hover {
+    transform: translateY(-1px) scale(1.04);
+    box-shadow: 0 14px 28px rgba(10, 25, 47, 0.34);
+}
+
+.cerrar-popup:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 8px 18px rgba(10, 25, 47, 0.24);
+}
+
+.cerrar-popup:focus-visible {
+    outline: 3px solid #F4F7F6;
+    outline-offset: 4px;
+}
+
+.popup-content {
+    display: grid;
+    grid-template-columns: minmax(280px, 1.05fr) minmax(260px, 0.95fr);
+    gap: clamp(20px, 4vw, 40px);
+    align-items: center;
+    padding: 72px 32px 32px;
+}
+
+.popup-img {
+    width: 100%;
+    height: clamp(220px, 32vw, 340px);
+    object-fit: cover;
+    border-radius: 24px;
+    border: 1px solid rgba(10, 25, 47, 0.08);
+    box-shadow: 0 18px 40px rgba(10, 25, 47, 0.18);
+}
+
+.popup-info {
+    display: grid;
+    gap: 16px;
+    color: #0A192F;
+}
+
+.popup-kicker {
+    display: inline-flex;
+    width: fit-content;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(10, 25, 47, 0.08);
+    color: #0A192F;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.popup-info h3 {
+    font-size: clamp(28px, 3vw, 40px);
+    line-height: 1.1;
+    color: #0A192F;
+}
+
+.popup-description {
+    font-size: 16px;
+    line-height: 1.7;
+    color: rgba(10, 25, 47, 0.78);
+}
+
+.popup-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.popup-stat {
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(10, 25, 47, 0.04);
+    border: 1px solid rgba(10, 25, 47, 0.08);
+}
+
+.popup-stat span {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: rgba(10, 25, 47, 0.62);
+}
+
+.popup-stat strong {
+    font-size: 15px;
+    color: #0A192F;
+    line-height: 1.35;
+}
+
+@media (max-width: 900px) {
+    .popup-content {
+        grid-template-columns: 1fr;
+        padding: 72px 20px 24px;
+    }
+
+    .popup-stats {
+        grid-template-columns: 1fr;
+    }
 }
