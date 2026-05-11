@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Crud } from '../servicios/crud';
 
-// Definimos la forma de los datos de un coche para mantener el modelo consistente.
 interface Coche {
   marca: string;
   modelo: string;
@@ -17,7 +16,6 @@ interface Coche {
   descripcion: string;
 }
 
-// Valores iniciales por defecto para limpiar el formulario o inicializar el modelo.
 const defaultCoche: Coche = {
   marca: '',
   modelo: '',
@@ -39,25 +37,33 @@ const defaultCoche: Coche = {
   styleUrls: ['./add.css'],
 })
 export class Add {
-  // Modelo del formulario vinculado con ngModel en el template.
   coche: Coche = { ...defaultCoche };
 
-  // Resetea el formulario devolviendo el modelo a sus valores por defecto.
+  // Inyecto el servicio Crud en el constructor
+  constructor(private crudService: Crud) {}
+
   clearForm(): void {
     this.coche = { ...defaultCoche };
   }
 
-  // Se ejecuta cuando el formulario se envía.
-  // Valida los campos obligatorios y muestra el coche en la consola.
   submitForm(): void {
     if (!this.coche.marca || !this.coche.modelo || !this.coche.matricula) {
       alert('Por favor, complete los campos Marca, Modelo y Matrícula.');
       return;
     }
 
-    console.log('Nuevo coche añadido:', this.coche);
-    alert('Coche añadido correctamente. Revisa la consola para ver los datos.');
-    this.clearForm();
+    // Llamo al servicio y me suscribo para saber cuándo termina de guardar
+    this.crudService.addCoche(this.coche).subscribe({
+      next: (res) => {
+        // Si entra aquí, es que el json-server ha guardado el coche OK
+        console.log('Coche guardado en el servidor:', res);
+        alert('Coche añadido correctamente.');
+        this.clearForm();
+      },
+      error: (err) => {
+        console.error('Error al guardar:', err);
+        alert('Error: Asegúrate de tener el json-server encendido.');
+      }
+    });
   }
 }
-
