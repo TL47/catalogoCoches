@@ -10,11 +10,14 @@ body {
 form {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12%;
 
-    background: linear-gradient(#defffe 60%, #72fffa) padding-box,
-    linear-gradient(180deg, #163564, #00F2FF) border-box;
+    background: linear-gradient(white 50%, #72fffa) padding-box,
+    linear-gradient(180deg, #163564, #0052FF) border-box;
     width: 35%;
-    height: 80%;
+    height: 60%;
 
     border: 0.3vi solid transparent;
     border-radius: 5%;
@@ -24,22 +27,32 @@ form {
 .input {
     display: flex;
     flex-direction: column;
-    margin: 5%;
+    width: 80%;
 }
 label {
     color: #0A192F;
+    font-size: 150%;
 }
 input {
     color: #0052FF;
     border-style: solid;
     border-radius: 5px;
+    size: 100%;
 }
 button {
-    background-color: #163564;
+    background-color: #00F2FF;
+    color: #163564;
     align-self: center;
-    width: 50%;
-    color:#00F2FF;
+    width: 70%;
+    font-size: 250%;
     border-style: solid;
     border-color: #0A192F;
     border-radius: 5px;
+}
+button:hover {
+    background-color: #163564;
+    color:#00F2FF;
+    transition: 50ms;
+    transform: scale(1.01);
+    cursor: pointer;
 }
