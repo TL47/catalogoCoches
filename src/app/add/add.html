@@ -7,19 +7,19 @@
         <form class="form-coche" (ngSubmit)="submitForm()" #carForm="ngForm">
 
             <div class="grupo-input">
-                <label for="marca">Marca:</label>
+                <label for="marca">Marca<sup style="color:#0052FF">*</sup>:</label>
                 <input name="marca" [(ngModel)]="coche.marca" type="text" id="marca" class="control-input" required>
             </div>
 
             <!-- ngModel: Si el usuario escribe en el input, la variable this.coche.marca en el TS se actualiza automáticamente.
              Si el código TS cambia el valor de this.coche.marca, el texto dentro del input del HTML cambia solo. -->
             <div class="grupo-input">
-                <label for="modelo">Modelo:</label>
+                <label for="modelo">Modelo<sup style="color:#0052FF">*</sup>:</label>
                 <input name="modelo" [(ngModel)]="coche.modelo" type="text" id="modelo" class="control-input" required>
             </div>
 
             <div class="grupo-input">
-                <label for="matricula">Matrícula:</label>
+                <label for="matricula">Matrícula<sup style="color:#0052FF">*</sup>:</label>
                 <input name="matricula" [(ngModel)]="coche.matricula" type="text" id="matricula" class="control-input"
                     required>
             </div>
