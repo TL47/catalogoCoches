@@ -1,11 +1,137 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo</title>
-</head>
-<body>
-    <h1>Bienvenido al Catálogo</h1>
-</body>
-</html>
+<!-- PopUp de cada coche -->
+<div class="popup" id="popup">
+    <div class="container-popup">
+        <div class="header-popup">
+            <button type="button" id="cerrar" class="cerrar-popup" (click)="cerrarPopup()" aria-label="Cerrar popup">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        @if (selectedCoche) {
+            <div class="popup-content">
+                <img [src]="selectedCoche.imagen" [alt]="selectedCoche.marca + ' ' + selectedCoche.modelo" class="popup-img">
+                <div class="popup-info">
+                    <p class="popup-kicker">Ficha del vehículo</p>
+                    <h3>{{ selectedCoche.marca }} {{ selectedCoche.modelo }}</h3>
+                    <p class="popup-description">{{ selectedCoche.descripcion }}</p>
+                    <div class="popup-stats">
+                        <div class="popup-stat">
+                            <span>Matrícula</span>
+                            <strong>{{ selectedCoche.matricula }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Año</span>
+                            <strong>{{ selectedCoche.anio }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Precio</span>
+                            <strong>{{ selectedCoche.precio | currency:'EUR':'symbol':'1.0-0' }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Kms</span>
+                            <strong>{{ selectedCoche.kms }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Combustible</span>
+                            <strong>{{ selectedCoche.combustible }}</strong>
+                        </div>
+                        <div class="popup-stat">
+                            <span>Transmisión</span>
+                            <strong>{{ selectedCoche.transmision }}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="titulo">
+    <h1>Catálogo</h1>
+</div>
+<main>
+    <!-- Aquí aparecen los coches -->
+    <div class="contenido">
+        <div class="contenedor-tarjetas">
+            @for (coche of cochesFilterados(); track coche.matricula) {
+                <button type="button" class="tarjeta-boton" (click)="mostrarPopup(coche)">
+                    <div class="tarjeta">
+                        <img [src]="coche.imagen" [alt]="coche.marca + ' ' + coche.modelo" class="tarjeta-img">
+                        <div class="tarjeta-cuerpo">
+                            <h5 class="tarjeta-titulo">{{ coche.marca }} {{ coche.modelo }}</h5>
+                            <p class="tarjeta-texto">{{ coche.descripcion }}</p>
+                        </div>
+                    </div>
+                </button>
+            } @empty {
+                <p class="sin-resultados">No hay coches que coincidan con los filtros seleccionados.</p>
+            }
+        </div>
+    </div>
+
+    <!-- Filtros para aplicar a la busqueda de coches -->
+    <div class="filtros">
+        <div class="filtros-header">
+            <h3>Filtros</h3>
+            <button type="button" class="btn-reset" (click)="resetFiltros()">Limpiar Filtros</button>
+        </div>
+
+        <form class="formulario-filtros">
+            <!-- Búsqueda de texto -->
+            <div class="grupo-filtro">
+                <label for="search">Buscar (Marca/Modelo):</label>
+                <input 
+                    type="text" 
+                    name="search" 
+                    id="search" 
+                    placeholder="Escribe aquí..." 
+                    [(ngModel)]="searchText"
+                    class="input-filtro">
+            </div>
+
+            <!-- Marca -->
+            <div class="grupo-filtro">
+                <label for="marca">Marca:</label>
+                <select 
+                    name="marca" 
+                    id="marca" 
+                    [(ngModel)]="selectedMarca"
+                    class="select-filtro">
+                    <option value="">Todas las marcas</option>
+                    @for (marca of getMarcas(); track marca) {
+                        <option [value]="marca">{{ marca }}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Combustible -->
+            <div class="grupo-filtro">
+                <label for="combustible">Combustible:</label>
+                <select 
+                    name="combustible" 
+                    id="combustible" 
+                    [(ngModel)]="selectedCombustible"
+                    class="select-filtro">
+                    <option value="">Todos los combustibles</option>
+                    @for (combustible of getCombustibles(); track combustible) {
+                        <option [value]="combustible">{{ combustible }}</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Transmisión -->
+            <div class="grupo-filtro">
+                <label for="transmision">Transmisión:</label>
+                <select 
+                    name="transmision" 
+                    id="transmision" 
+                    [(ngModel)]="selectedTransmision"
+                    class="select-filtro">
+                    <option value="">Todas las transmisiones</option>
+                    @for (transmision of getTransmisiones(); track transmision) {
+                        <option [value]="transmision">{{ transmision }}</option>
+                    }
+                </select>
+            </div>
+        </form>
+    </div>
+</main>
