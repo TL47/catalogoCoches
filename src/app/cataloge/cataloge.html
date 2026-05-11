@@ -84,7 +84,8 @@
                     name="search" 
                     id="search" 
                     placeholder="Escribe aquí..." 
-                    [(ngModel)]="searchText"
+                    [ngModel]="searchText()"
+                    (ngModelChange)="searchText.set($event)"
                     class="input-filtro">
             </div>
 
@@ -94,7 +95,8 @@
                 <select 
                     name="marca" 
                     id="marca" 
-                    [(ngModel)]="selectedMarca"
+                    [ngModel]="selectedMarca()"
+                    (ngModelChange)="selectedMarca.set($event)"
                     class="select-filtro">
                     <option value="">Todas las marcas</option>
                     @for (marca of getMarcas(); track marca) {
@@ -109,7 +111,8 @@
                 <select 
                     name="combustible" 
                     id="combustible" 
-                    [(ngModel)]="selectedCombustible"
+                    [ngModel]="selectedCombustible()"
+                    (ngModelChange)="selectedCombustible.set($event)"
                     class="select-filtro">
                     <option value="">Todos los combustibles</option>
                     @for (combustible of getCombustibles(); track combustible) {
@@ -124,7 +127,8 @@
                 <select 
                     name="transmision" 
                     id="transmision" 
-                    [(ngModel)]="selectedTransmision"
+                    [ngModel]="selectedTransmision()"
+                    (ngModelChange)="selectedTransmision.set($event)"
                     class="select-filtro">
                     <option value="">Todas las transmisiones</option>
                     @for (transmision of getTransmisiones(); track transmision) {
