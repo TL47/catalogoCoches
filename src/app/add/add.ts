@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Crud } from '../servicios/crud';
 
 // Definimos la forma de los datos de un coche para mantener el modelo consistente.
 interface Coche {
