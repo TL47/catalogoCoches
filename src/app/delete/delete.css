@@ -53,6 +53,7 @@ button:hover {
     background-color: #163564;
     color:#00F2FF;
     transition: 50ms;
-    transform: scale(1.01);
+    transform: translateY(0) scale(1.03);
+    
     cursor: pointer;
 }
