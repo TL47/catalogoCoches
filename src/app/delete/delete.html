@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="delete.css" rel="stylesheet" type="text/css"/>
-    <title>Document</title>
-</head>
-<body>
+<main>
     <form action="xd" method="post">
         <div class="input">
             <label for="MarcaCoche" required>Marca del coche:</label>
-            <input type="text" name="Marca" id="#marca" placeholder="Toyota, Renault...">
+            <input type="text" [(ngModel)]="coche.marca" name="Marca" id="#marca" placeholder="Toyota, Renault...">
         </div>
         <div class="input">
             <label for="ModeloCoche" required>Modelo del coche:</label>
-            <input type="text" name="Modelo" id="#modelo" placeholder="Modelo del coche">
+            <input type="text" [(ngModel)]="coche.modelo" name="Modelo" id="#modelo" placeholder="Modelo del coche">
         </div>
         <div class="input">
             <label for="MatriculaCoche">Matrícula del coche:</label>
-            <input type="text" name="Modelo" id="#matricula" placeholder="Si es todos los modelos, dejar en blanco">
+            <input type="text" [(ngModel)]="coche.matricula" name="Modelo" id="#matricula" placeholder="Si es todos los modelos, dejar en blanco">
         </div>
         <div class="input">
             <button type="submit">Borrar</button>
         </div>
     </form>
-</body>
-</html>
+</main>
+
+

@@ -1,18 +1,60 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { Crud } from '../servicios/crud';
 
 @Component({
   selector: 'app-delete',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './delete.html',
   styleUrl: './delete.css',
 })
-export class Delete {}
-interface FiltroCoche {
+export class Delete {
+    coche: Coche = { marca: 's', modelo: '', matricula: '' };
+    constructor(private crudService: Crud) {}
+    
+    borrarCoche(): void {
+        // 1. Verificamos los obligatorios según tu regla
+        if (!this.coche.marca || !this.coche.modelo) {
+            alert('Marca y Modelo son obligatorios para borrar.');
+            return;
+        }
+        let url = `http://localhost:3000/coches?marca=${this.coche.marca}&modelo=${this.coche.modelo}`;
+        if (this.coche.matricula) {
+            url += `&matricula=${this.coche.matricula}`;
+        }
+
+        // 2. Buscamos qué coches coinciden
+    fetch(url)
+      .then(res => res.json())
+      .then((coches: any[]) => {
+        if (coches.length === 0) {
+          alert('No se encontró nada para borrar.');
+          return;
+        }
+
+        // 3. Usamos la función de tus compañeros para borrar cada uno
+        // OJO: Si su función usa la matrícula como ID, pasamos la matrícula. 
+        // Si usa el ID interno, habría que pasar 'c.id'.
+        coches.forEach(c => {
+          this.crudService.deleteCoche(c.id).subscribe({
+            next: () => console.log(`Borrado: ${c.id}`),
+            error: (err) => console.error('Fallo al borrar uno', err)
+          });
+        });
+
+        alert('Proceso de borrado lanzado.');
+        this.coche = { marca: '', modelo: '', matricula: '' };
+      });
+  }
+}
+interface Coche {
     marca: string;
     modelo: string;
     matricula?: string; // El signo ? indica que es opcional
 }
-
+/*
 async function manejarBorrado() {
     const datos: FiltroCoche = {
         marca: (document.querySelector('#marca') as HTMLInputElement).value,
@@ -62,4 +104,4 @@ async function ejecutarLogicaBorrado(filtro: FiltroCoche): Promise<void> {
     } catch (error) {
         console.error("Error en el sistema de borrado:", error);
     }
-}
+}*/
