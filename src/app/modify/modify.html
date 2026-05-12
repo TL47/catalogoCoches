@@ -3,26 +3,29 @@
 
         <h1 class="titulo-form">Modificar</h1>
 
-        <form>
+        <p>Los campos con (*) son OBLIGATORIOS y deben existir en el catalogo.</p>
+        <br>
+
+        <form id="formulario" (ngSubmit)="submitForm()" method="dialog">
         <div class="form-coche">
             <div class="fila-detalles">
+                    <div class="grupo-input">
+                        <label for="Matricula">Matrícula*: </label>
+                        <input class="control-input" type="text" id="Matricula" name="Matricula" placeholder="Se busca por Matrícula" required>
+                    </div>
                     <div class="grupo-input">
                         <label class="grupo-input" for="Marca">Marca: </label>
                         <input class="control-input" type="text" id="Marca" name="Marca" placeholder="Introduce la Marca" required>
                     </div>
-                    <div class="grupo-input">
-                        <label class="grupo-input" for="Modelo">Modelo: </label>
-                        <input class="control-input" type="text" id="Modelo" name="Modelo" placeholder="Introduce el Modelo" required>
-                    </div>
                 </div>
                 <div class="fila-detalles">
                     <div class="grupo-input">
-                        <label for="Matrícula">Matrícula: </label>
-                        <input class="control-input" type="text" id="Matrícula" name="Matrícula" placeholder="Introduce la Matrícula" required>
-                    </div>
-                    <div class="grupo-input">
                         <label class="grupo-input" for="Año">Año: </label>
                         <input class="control-input" type="number" id="Año" min="1886" max="2026" name="Año" placeholder="Introduce el Año" required>
+                    </div>
+                    <div class="grupo-input">
+                        <label class="grupo-input" for="Modelo">Modelo: </label>
+                        <input class="control-input" type="text" id="Modelo" name="Modelo" placeholder="Introduce el Modelo" required>
                     </div>
                 </div>
                 <div class="fila-detalles">
@@ -60,7 +63,7 @@
                 </div>
                 <div class="acciones">
                     <div>
-                        <button class="btn-guardar" type="submmit">Subir</button>
+                        <button class="btn-guardar" type="submit">Subir</button>
                     </div>
                     <div>
                         <button class="btn-limpiar" type="reset">Limpiar</button>
