@@ -39,6 +39,9 @@
                             <strong>{{ selectedCoche.transmision }}</strong>
                         </div>
                     </div>
+                    <div class="popup-actions">
+                        <button type="button" class="btn-popup-modificar" (click)="irModificar(selectedCoche)">Modificar</button>
+                    </div>
                 </div>
             </div>
         }
@@ -53,18 +56,26 @@
     <div class="contenido">
         <div class="contenedor-tarjetas">
             @for (coche of cochesFilterados(); track coche.matricula) {
-                <button type="button" class="tarjeta-boton" (click)="mostrarPopup(coche)">
-                    <div class="tarjeta">
-                        <img [src]="coche.imagen" [alt]="coche.marca + ' ' + coche.modelo" class="tarjeta-img">
-                        <div class="tarjeta-cuerpo">
-                            <h5 class="tarjeta-titulo">{{ coche.marca }} {{ coche.modelo }}</h5>
-                            <p class="tarjeta-texto">{{ coche.descripcion }}</p>
-                        </div>
+                <article class="tarjeta" role="button" tabindex="0" (click)="mostrarPopup(coche)" (keydown.enter)="mostrarPopup(coche)">
+                    <img [src]="coche.imagen" [alt]="coche.marca + ' ' + coche.modelo" class="tarjeta-img">
+                    <div class="tarjeta-cuerpo">
+                        <h5 class="tarjeta-titulo">{{ coche.marca }} {{ coche.modelo }}</h5>
+                        <p class="tarjeta-texto">{{ coche.descripcion }}</p>
                     </div>
-                </button>
-            } @empty {
+                    <button type="button" class="tarjeta-eliminar" (click)="eliminarCoche(coche, $event)" aria-label="Eliminar coche">
+                        Eliminar
+                    </button>
+                </article>
+            }
+
+            @if (cochesFilterados().length === 0) {
                 <p class="sin-resultados">No hay coches que coincidan con los filtros seleccionados.</p>
             }
+
+            <button type="button" class="tarjeta-agregar" (click)="irAAdd()" aria-label="Añadir coche">
+                <span class="tarjeta-agregar-icon">+</span>
+                <span>Añadir coche</span>
+            </button>
         </div>
     </div>
 

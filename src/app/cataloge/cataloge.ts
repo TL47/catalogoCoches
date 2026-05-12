@@ -1,6 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Crud } from '../servicios/crud';
 
 interface Coche {
@@ -144,7 +145,7 @@ export class Cataloge implements OnInit {
   }
 
   // Inicializar rangos con valores seguros antes de cargar datos
-  constructor() {
+  constructor(private router: Router) {
     this.minPrecio.set(this.getPrecioMinimo());
     this.maxPrecio.set(this.getPrecioMaximo());
     this.minAnio.set(this.getAnioMinimo());
@@ -155,6 +156,32 @@ export class Cataloge implements OnInit {
     this.selectedCoche = coche;
     const popup = document.getElementById('popup');
     popup?.classList.add('visible');
+  }
+
+  eliminarCoche(coche: Coche, event: Event) {
+    event.stopPropagation();
+    this.crud.deleteCoche(coche.matricula).subscribe({
+      next: () => {
+        this.cargarProductos();
+        if (this.selectedCoche?.matricula === coche.matricula) {
+          this.cerrarPopup();
+        }
+      },
+      error: (error) => {
+        console.error('No se pudo eliminar el coche', error);
+      },
+    });
+  }
+
+  irAAdd() {
+    this.router.navigate(['/add']);
+  }
+
+  irModificar(coche: Coche | null) {
+    if (!coche) {
+      return;
+    }
+    this.router.navigate(['/modify'], { queryParams: { matricula: coche.matricula } });
   }
 
   cerrarPopup() {

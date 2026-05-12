@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Crud } from '../servicios/crud';
 
 interface Coche {
@@ -39,8 +40,12 @@ const defaultCoche: Coche = {
 export class Add {
   coche: Coche = { ...defaultCoche };
 
-  // Inyecto el servicio Crud en el constructor
-  constructor(private crudService: Crud) {}
+  // Inyecto el servicio Crud y Router en el constructor
+  constructor(private crudService: Crud, private router: Router) {}
+
+  irCatalogo(): void {
+    this.router.navigate(['/cataloge']);
+  }
 
   clearForm(): void {
     this.coche = { ...defaultCoche };
