@@ -3,7 +3,7 @@
 
         <h1 class="titulo-form">Modificar</h1>
 
-        <form>
+        <form id="formulario" (ngSubmit)="submitForm()" method="dialog">
         <div class="form-coche">
             <div class="fila-detalles">
                     <div class="grupo-input">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="acciones">
                     <div>
-                        <button class="btn-guardar" type="submmit">Subir</button>
+                        <button class="btn-guardar" type="submit">Subir</button>
                     </div>
                     <div>
                         <button class="btn-limpiar" type="reset">Limpiar</button>
